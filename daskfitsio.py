@@ -1,11 +1,20 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+'''
+`daskfitsio`
+
+Module to wrap a fits hdu in a dask array to enable out of core
+parallel computation
+'''
 
 import fitsio
 import dask.array as da
 import numpy as np
 
 class DaskAdapter(object):
+    '''
+    Adapter object, which wraps a `fitsio.ImageHDU` object
+    '''
     def __init__(self, hdu):
         self.hdu = hdu
         self.info = self.hdu.get_info()
@@ -25,8 +34,15 @@ class DaskAdapter(object):
     def __getitem__(self, item):
         return self.hdu[item]
 
-# with fitsio.FITS('test.fits') as infile:
-#     hdu = infile[0]
-#     x = da.from_array(DaskAdapter(hdu), chunks=(10, 10))
-#     print(x.mean(axis=1).compute())
 
+def read_hdu(hdu, chunks):
+    '''
+    High level interface to access hdu data
+
+    >>> with fitsio.FITS(fname) as infile:
+    ...     hdu = infile[0]
+    ...     data = df.read_hdu(hdu, chunks=(10, 10))
+    ...     print(data.mean(axis=1).compute())
+    ...
+    '''
+    return da.from_array(DaskAdapter(hdu), chunks=chunks)
