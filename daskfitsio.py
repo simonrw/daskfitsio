@@ -25,10 +25,17 @@ class DaskAdapter(object):
     @property
     def dtype(self):
         t = self.info['img_type']
-        return {
-            -32: np.float32,
-            -64: np.float64,
-        }[t]
+        try:
+            return {
+                8: np.int8,
+                16: np.int16,
+                32: np.int32,
+                -32: np.float32,
+                -64: np.float64,
+            }[t]
+        except KeyError:
+            err_msg = 'Unsupported data type: {}. Please open a new issue: https://github.com/mindriot101/daskfitsio/issues/new'.format(t)
+            raise ValueError(err_msg)
 
     def __getitem__(self, item):
         return self.hdu[item]
