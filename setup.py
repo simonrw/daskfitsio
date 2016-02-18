@@ -1,7 +1,7 @@
 from setuptools import setup
 
 install_requires = ['numpy', 'dask']
-test_requires = install_requires + ['pytest']
+test_requires = install_requires + ['pytest', 'pytest-cov']
 
 with open('README.rst') as infile:
     readme = infile.read()

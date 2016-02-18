@@ -3,3 +3,5 @@ tests/.cache
 .cache
 build
 dist
+htmlcov
+.coverage
