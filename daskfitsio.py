@@ -34,7 +34,9 @@ class DaskAdapter(object):
                 -64: np.float64,
             }[t]
         except KeyError:
-            err_msg = 'Unsupported data type: {}. Please open a new issue: https://github.com/mindriot101/daskfitsio/issues/new'.format(t)
+            err_msg = ('Unsupported data type: {dtype}. '
+                       'Please open a new issue: https://github.com/mindriot101/daskfitsio/issues/new'.format(
+                           dtype=t))
             raise ValueError(err_msg)
 
     def __getitem__(self, item):
