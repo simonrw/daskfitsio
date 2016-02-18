@@ -1,3 +1,2 @@
-dask==0.7.6
+dask[complete]==0.7.6
 fitsio==0.9.7
-numpy==1.10.4
