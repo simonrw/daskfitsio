@@ -2,6 +2,9 @@
 daskfitsio
 ==========
 
+.. image:: https://travis-ci.org/mindriot101/daskfitsio.svg?branch=master
+    :target: https://travis-ci.org/mindriot101/daskfitsio
+
 Wrapper around ``fitsio.ImageHDU`` creating a ``dask.Array``.
 
 Quickstart
