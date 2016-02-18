@@ -7,7 +7,6 @@ Module to wrap a fits hdu in a dask array to enable out of core
 parallel computation
 '''
 
-import fitsio
 import dask.array as da
 import numpy as np
 
